@@ -28,3 +28,16 @@ export const companions :Companion[] = [
         bookmarked: false
     }
 ]
+
+export const subjects = [
+    "maths",
+    "science",
+    "history",
+    "language",
+    "coding",
+    "geography",
+    "economics",
+    "finance",
+    "business",
+    "art"
+]
