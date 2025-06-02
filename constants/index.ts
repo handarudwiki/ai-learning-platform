@@ -1,4 +1,4 @@
-import type { Companion } from "@/types";
+import type { Companion, SavedMessage } from "@/types";
 
 export const companions :Companion[] = [
     {
@@ -40,4 +40,11 @@ export const subjects = [
     "finance",
     "business",
     "art"
+]
+
+export const messages:SavedMessage[] = [
+    {
+        role : "assistant",
+        content : "Message from assistant"
+    }
 ]
