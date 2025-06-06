@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import React from 'react'
 
 interface CompanionCardProps {
@@ -23,7 +22,7 @@ const CompanionCard = ({
     color,
     bookmarked
 }:CompanionCardProps) => {
-    const pathName = usePathname()
+    // const pathName = usePathname()
   return (
     <article className='companion-card' style={{backgroundColor: color}}>
         <div className="flex justify-between items-center">
@@ -48,7 +47,7 @@ const CompanionCard = ({
                 />
                 <span className='text-sm'>{duration} mins</span>
             </div>
-            <Link href="/companions" className='w-full'>
+            <Link href={`/companions/${id}`} className='w-full'>
                 <button className='btn-primary w-full justify-center'>
                     Launch Lesson
                 </button>

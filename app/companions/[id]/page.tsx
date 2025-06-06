@@ -1,5 +1,5 @@
 import CompanionComponent from "@/components/CompanionComponent";
-import { companions } from "@/constants";
+import { getCompanionById } from "@/lib/actions/companion";
 import Image from "next/image";
 
 interface CompanionSessionPageProps {
@@ -8,8 +8,8 @@ interface CompanionSessionPageProps {
 
 const page = async ({params}:CompanionSessionPageProps) => {
     const {id} = await params;
-    const companion = companions.find(companion => companion.id === id);
-    const{name, subject, topic, duration,color, bookmarked} = companion
+    const companion = await getCompanionById(id);
+    const{name, subject, topic, duration,color} = companion
   return (
     <main>
         <article className="flex rounded-border justify-between p-6 max-md:flex-col">

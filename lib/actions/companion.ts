@@ -82,4 +82,20 @@ export const getAllCompanions = async ({limit=10, page=1, subject, topic}:GetAll
     return data;
 }
 
+export const getCompanionById = async (id:string) => {
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase
+        .from("companions")
+        .select()
+        .eq("id", id)
+        .single();
+
+    if (error) {
+        throw new Error(error.message || "Failed to fetch companion");
+    }
+
+    return data;
+}
+
 
