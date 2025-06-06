@@ -46,5 +46,9 @@ export const messages:SavedMessage[] = [
     {
         role : "assistant",
         content : "Message from assistant"
+    },
+    {
+        role: "system",
+        content: "Message"
     }
 ]
