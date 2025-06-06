@@ -9,6 +9,8 @@ import { SelectValue } from "@radix-ui/react-select";
 import { subjects } from "@/constants";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { createCompanion } from "@/lib/actions/companion";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -26,15 +28,27 @@ const CompanionForm = () => {
             name: "",
             subject: "",   
             topic: "",
-            duration: 30,
+            duration: 15,
             voice: "",
             style: "",
         },
     })
 
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
+        const companion = await createCompanion(data);
+        
+        if (companion) {
+            redirect(`/companions/${companion.id}`);
+        } else {
+            console.error("Failed to create companion");
+        redirect("/");
+        }
+
+    }
+
   return (
     <Form {...form} >
-        <form onSubmit={form.handleSubmit((data) => console.log(data))} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
             control={form.control}
              name="name"
@@ -64,6 +78,7 @@ const CompanionForm = () => {
                             <Select
                              value={field.value}
                              defaultValue={field.value}
+                             onValueChange={field.onChange}
                             >
                                 <SelectTrigger className="input capitalize">
                                     <SelectValue placeholder="Select the subject"/>
@@ -108,6 +123,7 @@ const CompanionForm = () => {
                     <FormControl>
                        <Select
                        value={field.value}
+                          onValueChange={field.onChange}
                        defaultValue={field.value}>
                         <SelectTrigger className="input capitalize">
                             <SelectValue placeholder="Select the voice"/>
@@ -132,6 +148,7 @@ const CompanionForm = () => {
                             <Select
                              value={field.value}
                              defaultValue={field.value}
+                                onValueChange={field.onChange}
                             >
                                 <SelectTrigger className="input capitalize">
                                     <SelectValue placeholder="Select the style"/>

@@ -11,6 +11,15 @@ export enum Subject {
     art = "art",
 }
 
+interface CreateCompanion {
+  name: string;
+  subject: string;
+  topic: string;
+  voice: string;
+  style: string;
+  duration: number;
+}
+
 export type Companion = {
     id: string;
     name: string;
