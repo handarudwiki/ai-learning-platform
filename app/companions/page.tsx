@@ -2,9 +2,17 @@
 import CompanionCard from "@/components/CompanionCard"
 import SearchInput from "@/components/SearchInput"
 import SubjectFilter from "@/components/SubjectFilter"
-import { companions } from "@/constants"
+import { getAllCompanions } from "@/lib/actions/companion"
+import { SearchParams } from "@/types"
 
-const page = () => {
+const page = async({searchParams}:SearchParams) => {
+
+    const filters = await searchParams;
+    const subject = filters.subject ? filters.subject : undefined;
+    const topic = filters.topic ? filters.topic : undefined;
+
+    const companions = await getAllCompanions({subject, topic});
+
   return (
     <main>
         <section className="flex justify-between gap-4 max-sm:flex-col">

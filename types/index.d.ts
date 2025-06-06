@@ -20,6 +20,18 @@ interface CreateCompanion {
   duration: number;
 }
 
+interface GetAllCompanions{
+    limit? : number;
+    page? : number;
+    subject? : string | string[];
+    topic? : string | string[];
+}
+
+interface SearchParams {
+    searchParams: Promise<{[key : string]: string | string[] | undefined}>;
+}
+
+
 export type Companion = {
     id: string;
     name: string;
@@ -41,6 +53,8 @@ export interface CompanionComponentProps {
     voice : string;
     style : string;
 }
+
+
 
 export interface SavedMessage{
     role : "user" | "system" | "assistant"
