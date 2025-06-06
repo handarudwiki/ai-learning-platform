@@ -35,7 +35,7 @@ const CompanionList = ({
                             <div className="flex items-center gap-2">
                                 <div className="size-[72px] items-center justify-center rounded-lg max-md:hidden" style={{ backgroundColor: companion.color }}>
                                     <Image
-                                    src={`/iconst/${companion.subject}.svg`}
+                                    src={`/icons/${companion.subject}.svg`}
                                     alt={`${companion.subject} Icon`}
                                     width={35}
                                     height={35}

@@ -98,4 +98,20 @@ export const getCompanionById = async (id:string) => {
     return data;
 }
 
+export const getRecentCompanions = async (limit=10) => {
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase
+        .from("companions")
+        .select()
+        .order("created_at", { ascending: false })
+        .limit(limit);
+
+    if (error) {
+        throw new Error(error.message || "Failed to fetch recent companions");
+    }
+
+    return data;
+}
+
 
