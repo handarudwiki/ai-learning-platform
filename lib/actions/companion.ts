@@ -113,5 +113,19 @@ export const getRecentCompanions = async (limit=10) => {
 
     return data;
 }
+export const addToSessionHistory = async (companionId :string)=>{
+    const { userId } = await auth();
 
+    const supabase = createSupabaseClient();
+    const { data, error } = await supabase
+        .from("session_history")
+        .insert({ companion_id: companionId, user_id: userId })
+        .select();
+
+    if (error || !data) {
+        throw new Error(error?.message || "Failed to add to session history");
+    }
+
+    return data[0];
+}
 
